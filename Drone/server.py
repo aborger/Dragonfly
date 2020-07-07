@@ -8,7 +8,7 @@ import os
 #os.system("sudo pigpiod")
 
 #mc.calibrate()
-mc.setup()
+mc.arm()
 
 # Create socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,14 +37,20 @@ while True:
     # establish connection
     clientsocket,addr = serversocket.accept()
     while True:
+
         message = clientsocket.recv(11)
         inputs = parse(message)
         inputs[0] -= 10
-        inputs[2] -= 10
-	inputs[3] -= 10
-	for i in inputs:
-	    i = i/100
+        inputs[2] -= 50
+	inputs[3] -= 50
+
         mc.convert(inputs)
+	os.system('clear')
+        x_rot, y_rot, xControl, yControl = mc.pid_update()
+        print('x_rot = ' + str(x_rot))
+	print('y_rot = ' + str(y_rot))
+	print('xControl = ' + str(xControl))
+	print('yControl = ' + str(yControl))
         mc.update_motors()
         mc.reset_motors()
 

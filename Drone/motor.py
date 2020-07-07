@@ -38,7 +38,7 @@ class Motor:
   @classmethod
   def set_all_power(cls, power):
     for obj in cls.objs:
-      power = obj.check_power(power)
+      #power = obj.check_power(power)
       pi.set_servo_pulsewidth(obj.GPIO_PIN, power)
       print(obj.name + str(power))
 
