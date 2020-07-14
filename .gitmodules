@@ -1,3 +1,6 @@
 [submodule "Drone/mpu6050"]
 	path = Drone/mpu6050
 	url = https://github.com/m-rtijn/mpu6050.git
+[submodule "Drone/simple-pid"]
+	path = Drone/simple-pid
+	url = https://github.com/m-lundberg/simple-pid.git
