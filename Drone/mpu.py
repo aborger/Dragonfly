@@ -2,26 +2,36 @@ from mpu6050 import mpu6050
 from time import sleep
 import math
 
-mpu = mpu6050(0x68)
+mpu = mpu6050.mpu6050(0x68)
 
 def dist(a,b):
     return math.sqrt((a*a)+(b*b))
  
 def get_x_rotation(x,y,z):
-    radians = math.atan(x / dist(y,z))
-    return math.degrees(radians)
+    radians = 0
+    try:
+        radians = math.atan(x / dist(y,z))
+    except ZeroDivisionError:
+        pass
+    finally:
+        return math.degrees(radians)
  
 def get_y_rotation(x,y,z):
-    radians = math.atan(y / dist(x,z))
-    return math.degrees(radians)
+    radians = 0
+    try:
+        radians = math.atan(y / dist(x,z))
+    except ZeroDivisionError:
+        pass
+    finally:
+        return math.degrees(radians)
 
 class imu:
     def __init__(self):
         self.x_rot = 0
-	self.y_rot = 0
+        self.y_rot = 0
 
     def update(self):
-	data = mpu.get_all_data()
+        data = mpu.get_all_data()
 
         accel = data[0]
 

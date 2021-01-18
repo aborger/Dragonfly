@@ -5,6 +5,8 @@ import socket
 import control as mc
 import os
 
+
+
 #os.system("sudo pigpiod")
 
 #mc.calibrate()
@@ -26,11 +28,10 @@ serversocket.listen(5)
 
 def parse(vals):
   valList = vals.split()
-  mapped = map(int, valList)
+  mapped = list(map(int, valList))
   while len(mapped) < 4:
     mapped.append(0)
   return mapped
-
 
 
 while True:
@@ -42,15 +43,25 @@ while True:
         inputs = parse(message)
         inputs[0] -= 10
         inputs[2] -= 50
-	inputs[3] -= 50
+        inputs[3] -= 50
 
         mc.convert(inputs)
-	os.system('clear')
         x_rot, y_rot, xControl, yControl = mc.pid_update()
-        print('x_rot = ' + str(x_rot))
-	print('y_rot = ' + str(y_rot))
-	print('xControl = ' + str(xControl))
-	print('yControl = ' + str(yControl))
+
+        ROUND = 2
+        x_rot = round(x_rot, ROUND)
+        y_rot = round(y_rot, ROUND)
+        xControl = round(xControl, ROUND)
+        yControl = round(yControl, ROUND)
+        # Clears screen
+        print(chr(27) + "[2J")
+
         mc.update_motors()
+        print(' ')
+        print('x_rot = ' + str(x_rot))
+        print('y_rot = ' + str(y_rot))
+        print('xControl = ' + str(xControl))
+        print('yControl = ' + str(yControl))
+
         mc.reset_motors()
 

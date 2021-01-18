@@ -3,7 +3,7 @@ import pigpio
 
 pi = pigpio.pi()
 MIN = 500
-MAX = 2000
+MAX = 2500
 
 class Motor:
   objs = []
@@ -33,7 +33,8 @@ class Motor:
     for obj in cls.objs:
       power = obj.check_power(obj.val)
       pi.set_servo_pulsewidth(obj.GPIO_PIN, power)
-      print(obj.name + str(power))
+      power = round(power, 2)
+      print(obj.name + ': ' + str(power))
 
   @classmethod
   def set_all_power(cls, power):

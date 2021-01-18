@@ -1,5 +1,4 @@
 import mpu
-from simple_pid import PID
 
 imu = mpu.imu()
 
