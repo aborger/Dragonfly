@@ -21,7 +21,7 @@ Current Progress:
   - There may be an issue with the brushless motors we purchased being too low quality
   - They sometimes struggle with maintaining the speed they are set at (without any load)
 - [ ] Targeting/Following
-  - I have implemented a following system on an RC car that uses pixel detection
+  - I have implemented a following system on a LEGO Mindstorm car that uses pixel detection
   - That system rotates the car to follow the center of area of the detected object
   - That system should be able to be transferred to the quadcopter with the exception of a different object detection method
 
