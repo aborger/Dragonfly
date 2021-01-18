@@ -25,6 +25,18 @@ Current Progress:
   - That system rotates the car to follow the center of area of the detected object
   - That system should be able to be transferred to the quadcopter with the exception of a different object detection method
 
+## Documentation and Instructions
+Use the following to implement this software in your own raspberry pi drone.
+
+Note: This project is still in development. All procedures may change at any time.
+
+### Drone Control
+
+
+### Ground Control
+
+
+### Dragon Vision
 
 This repository includes submodules so when cloning clone with:
 git clone --recurse-submodules https://github.com/aborger/Dragonfly
